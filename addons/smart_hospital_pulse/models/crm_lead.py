@@ -39,13 +39,19 @@ class CrmLead(models.Model):
         if 'patient_heart_rate' in vals:
             hr = vals.get('patient_heart_rate')
 
+            vals = dict(vals)
+
             if hr and (hr < 40 or hr > 140):
-                vals = dict(vals)
                 vals.update({
                     'priority': '3',
                     'is_critical_iot_alert': True,
                 })
                 post_message = True
+            else:
+                vals.update({
+                    'priority': '0',
+                    'is_critical_iot_alert': False,
+                })
 
         result = super().write(vals)
 
