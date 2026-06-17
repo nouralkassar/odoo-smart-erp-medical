@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="crm_lead_form_inherit_triage"
+            model="ir.ui.view">
+
+        <field name="name">crm.lead.form.inherit.triage</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='phone']"
+                   position="after">
+
+                <group>
+
+                    <field name="patient_heart_rate"
+                           decoration-danger="is_critical_iot_alert"/>
+
+                    <field name="is_critical_iot_alert"/>
+
+                </group>
+
+            </xpath>
+
+        </field>
+
+    </record>
+
+</odoo>
